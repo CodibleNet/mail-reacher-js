@@ -1,0 +1,23 @@
+{
+  "name": "@mail-reacher/nodemailer",
+  "version": "0.1.0",
+  "description": "Nodemailer transport adapter for Mail Reacher.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@mail-reacher/sdk": "0.1.0"
+  },
+  "peerDependencies": {
+    "nodemailer": ">=6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

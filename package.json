@@ -1,0 +1,20 @@
+{
+  "name": "mail-reacher-js",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Official TypeScript SDK and framework integrations for Mail Reacher.",
+  "license": "MIT",
+  "packageManager": "yarn@1.22.22",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "yarn workspace @mail-reacher/sdk build && yarn workspace @mail-reacher/next build && yarn workspace @mail-reacher/nodemailer build && yarn workspace @mail-reacher/tanstack-start build",
+    "typecheck": "yarn workspace @mail-reacher/sdk typecheck && yarn workspace @mail-reacher/sdk build && yarn workspace @mail-reacher/next typecheck && yarn workspace @mail-reacher/nodemailer typecheck && yarn workspace @mail-reacher/tanstack-start typecheck",
+    "clean": "rm -rf packages/*/dist"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.3",
+    "typescript": "^5.9.3"
+  }
+}

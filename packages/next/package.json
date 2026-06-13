@@ -1,0 +1,23 @@
+{
+  "name": "@mail-reacher/next",
+  "version": "0.1.0",
+  "description": "Next.js helpers for Mail Reacher.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@mail-reacher/sdk": "0.1.0"
+  },
+  "peerDependencies": {
+    "next": ">=14"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
