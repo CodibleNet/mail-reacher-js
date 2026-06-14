@@ -6,7 +6,10 @@
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit"
@@ -19,5 +22,29 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodibleNet/mail-reacher-js.git",
+    "directory": "packages/nodemailer"
+  },
+  "bugs": {
+    "url": "https://github.com/CodibleNet/mail-reacher-js/issues"
+  },
+  "homepage": "https://github.com/CodibleNet/mail-reacher-js/tree/main/packages/nodemailer#readme",
+  "keywords": [
+    "mail-reacher",
+    "email",
+    "transactional-email",
+    "api",
+    "typescript",
+    "nodemailer"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   }
 }

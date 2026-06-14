@@ -1,0 +1,42 @@
+name: Publish packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run npm publish with --dry-run"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn typecheck
+      - run: yarn build
+      - name: Publish @mail-reacher packages
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == 'true' && '--dry-run' || '' }}
+        run: |
+          test -n "$NODE_AUTH_TOKEN" || (echo "Missing NPM_TOKEN repository secret" && exit 1)
+          npm publish packages/sdk --access public $DRY_RUN
+          npm publish packages/next --access public $DRY_RUN
+          npm publish packages/nodemailer --access public $DRY_RUN
+          npm publish packages/tanstack-start --access public $DRY_RUN
