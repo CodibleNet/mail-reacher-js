@@ -13,7 +13,7 @@
     "typecheck": "yarn workspace @mail-reacher/sdk typecheck && yarn workspace @mail-reacher/sdk build && yarn workspace @mail-reacher/next typecheck && yarn workspace @mail-reacher/nodemailer typecheck && yarn workspace @mail-reacher/tanstack-start typecheck",
     "clean": "rm -rf packages/*/dist",
     "pack": "yarn build && yarn workspaces run pack",
-    "publish:packages": "yarn build && npm publish packages/sdk --access public && npm publish packages/next --access public && npm publish packages/nodemailer --access public && npm publish packages/tanstack-start --access public"
+    "publish:packages": "yarn build && npm publish ./packages/sdk --access public && npm publish ./packages/next --access public && npm publish ./packages/nodemailer --access public && npm publish ./packages/tanstack-start --access public"
   },
   "devDependencies": {
     "@types/node": "^22.19.3",

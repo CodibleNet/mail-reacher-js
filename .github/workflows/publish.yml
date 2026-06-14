@@ -38,7 +38,7 @@ jobs:
           if [ -z "$DRY_RUN" ]; then
             test -n "$NODE_AUTH_TOKEN" || (echo "Missing NPM_TOKEN repository secret" && exit 1)
           fi
-          npm publish packages/sdk --access public $DRY_RUN
-          npm publish packages/next --access public $DRY_RUN
-          npm publish packages/nodemailer --access public $DRY_RUN
-          npm publish packages/tanstack-start --access public $DRY_RUN
+          npm publish ./packages/sdk --access public $DRY_RUN
+          npm publish ./packages/next --access public $DRY_RUN
+          npm publish ./packages/nodemailer --access public $DRY_RUN
+          npm publish ./packages/tanstack-start --access public $DRY_RUN
