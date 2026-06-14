@@ -38,7 +38,21 @@ jobs:
           if [ -z "$DRY_RUN" ]; then
             test -n "$NODE_AUTH_TOKEN" || (echo "Missing NPM_TOKEN repository secret" && exit 1)
           fi
-          npm publish ./packages/sdk --access public $DRY_RUN
-          npm publish ./packages/next --access public $DRY_RUN
-          npm publish ./packages/nodemailer --access public $DRY_RUN
-          npm publish ./packages/tanstack-start --access public $DRY_RUN
+          publish_package() {
+            local dir="$1"
+            local name version
+            name="$(node -p "require('./${dir}/package.json').name")"
+            version="$(node -p "require('./${dir}/package.json').version")"
+
+            if [ -z "$DRY_RUN" ] && npm view "${name}@${version}" version >/dev/null 2>&1; then
+              echo "${name}@${version} is already published; skipping."
+              return 0
+            fi
+
+            npm publish "./${dir}" --access public $DRY_RUN
+          }
+
+          publish_package packages/sdk
+          publish_package packages/next
+          publish_package packages/nodemailer
+          publish_package packages/tanstack-start
