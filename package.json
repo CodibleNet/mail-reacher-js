@@ -2,7 +2,7 @@
   "name": "mail-reacher-js",
   "private": true,
   "version": "0.0.0",
-  "description": "Official TypeScript SDK and framework integrations for Mail Reacher.",
+  "description": "Official TypeScript SDK and framework integrations for Mail Reacher: Next.js, TanStack Start and Nodemailer.",
   "license": "MIT",
   "packageManager": "yarn@1.22.22",
   "workspaces": [
@@ -11,10 +11,30 @@
   "scripts": {
     "build": "yarn workspace @mail-reacher/sdk build && yarn workspace @mail-reacher/next build && yarn workspace @mail-reacher/nodemailer build && yarn workspace @mail-reacher/tanstack-start build",
     "typecheck": "yarn workspace @mail-reacher/sdk typecheck && yarn workspace @mail-reacher/sdk build && yarn workspace @mail-reacher/next typecheck && yarn workspace @mail-reacher/nodemailer typecheck && yarn workspace @mail-reacher/tanstack-start typecheck",
-    "clean": "rm -rf packages/*/dist"
+    "clean": "rm -rf packages/*/dist",
+    "pack": "yarn build && yarn workspaces run pack",
+    "publish:packages": "yarn build && npm publish packages/sdk --access public && npm publish packages/next --access public && npm publish packages/nodemailer --access public && npm publish packages/tanstack-start --access public"
   },
   "devDependencies": {
     "@types/node": "^22.19.3",
     "typescript": "^5.9.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodibleNet/mail-reacher-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CodibleNet/mail-reacher-js/issues"
+  },
+  "homepage": "https://mail-reacher.com/docs",
+  "keywords": [
+    "mail-reacher",
+    "email",
+    "transactional-email",
+    "sdk",
+    "nextjs",
+    "nodemailer",
+    "tanstack-start",
+    "typescript"
+  ]
 }
