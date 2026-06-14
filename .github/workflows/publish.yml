@@ -35,7 +35,9 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == 'true' && '--dry-run' || '' }}
         run: |
-          test -n "$NODE_AUTH_TOKEN" || (echo "Missing NPM_TOKEN repository secret" && exit 1)
+          if [ -z "$DRY_RUN" ]; then
+            test -n "$NODE_AUTH_TOKEN" || (echo "Missing NPM_TOKEN repository secret" && exit 1)
+          fi
           npm publish packages/sdk --access public $DRY_RUN
           npm publish packages/next --access public $DRY_RUN
           npm publish packages/nodemailer --access public $DRY_RUN
